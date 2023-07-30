@@ -53,16 +53,20 @@ body {
 /* General reusable components */
 /**********************/
 
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 3.2rem;
+}
+
 .grid {
   display: grid;
   column-gap: 6.4rem;
   row-gap: 9.6rem;
 }
 
-.container {
-  max-width: 120rem;
-  margin: 0 auto;
-  padding: 0 3.2rem;
+.grid:not(:last-child) {
+  margin-bottom: 9.6rem;
 }
 
 .grid--2-cols {
