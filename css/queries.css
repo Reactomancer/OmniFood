@@ -1,6 +1,9 @@
-/**********************************/
-/*  BELOW 1344px                  */
-/**********************************/
+/* rem and em do NOT depend on html font-size in media queries! Instead, 1rem = 1em = 16px */
+
+/**************************/
+/* BELOW 1344px (Smaller desktops) */
+/**************************/
+
 @media (max-width: 84em) {
   .hero {
     max-width: 120rem;
@@ -11,24 +14,18 @@
   }
 
   .gallery {
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.6rem;
-    padding: 1.6rem;
   }
 }
 
-/**********************************/
-/*  BELOW 1200px                  */
-/**********************************/
+/**************************/
+/* BELOW 1200px (Landscape Tablets) */
+/**************************/
 
 @media (max-width: 75em) {
   html {
+    /* 9px / 16px  */
     font-size: 56.25%;
-  }
-
-  .header {
-    padding: 0 3.2rem;
   }
 
   .grid {
@@ -44,6 +41,10 @@
     font-size: 2.4rem;
   }
 
+  .header {
+    padding: 0 3.2rem;
+  }
+
   .main-nav-list {
     gap: 3.2rem;
   }
@@ -57,26 +58,29 @@
   }
 }
 
-/**********************************/
-/*  BELOW 944px    (Tablets)      */
-/**********************************/
+/**************************/
+/* BELOW 944px (Tablets) */
+/**************************/
 
 @media (max-width: 59em) {
   html {
+    /* 8px / 16px = 0.5 = 50% */
     font-size: 50%;
   }
+
   .hero {
     grid-template-columns: 1fr;
     padding: 0 8rem;
     gap: 6.4rem;
   }
 
-  .hero-img {
-    width: 60%;
-  }
   .hero-text-box,
   .hero-img-box {
     text-align: center;
+  }
+
+  .hero-img {
+    width: 60%;
   }
 
   .delivered-meals {
@@ -105,6 +109,7 @@
   }
 
   .cta {
+    /* 3/5 = 60% + 2/5 = 40% */
     grid-template-columns: 3fr 2fr;
   }
 
@@ -112,63 +117,72 @@
     grid-template-columns: 1fr;
   }
 
-  .cta-form button {
+  .btn--form {
     margin-top: 1.2rem;
   }
-}
-/* mobile nav */
-.btn-mobile-nav {
-  display: block;
+
+  /* MOBILE NAVIGATION */
+  .btn-mobile-nav {
+    display: block;
+  }
+
+  .main-nav {
+    background-color: rgba(255, 255, 255, 0.97);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    transform: translateX(100%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease-in;
+
+    /* Hide navigation */
+    /* Allows NO transitions at all */
+    /* display: none; */
+
+    /* 1) Hide it visually */
+    opacity: 0;
+
+    /* 2) Make it unaccessible to mouse and keyboard */
+    pointer-events: none;
+
+    /* 3) Hide it from screen readers */
+    visibility: hidden;
+  }
+
+  .nav-open .main-nav {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transform: translateX(0);
+  }
+
+  .nav-open .icon-mobile-nav[name="close-outline"] {
+    display: block;
+  }
+
+  .nav-open .icon-mobile-nav[name="menu-outline"] {
+    display: none;
+  }
+
+  .main-nav-list {
+    flex-direction: column;
+    gap: 4.8rem;
+  }
+
+  .main-nav-link:link,
+  .main-nav-link:visited {
+    font-size: 3rem;
+  }
 }
 
-.main-nav {
-  background-color: rgba(255, 255, 255, 0.9);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  transform: translateX(100%);
-  justify-content: center;
-  transition: all 0.5s ease-in;
-  /* how to hide element without none display */
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-}
-
-.nav-open .main-nav {
-  opacity: 100%;
-  /* how to put it back */
-  pointer-events: auto;
-  visibility: visible;
-  transform: translateX(0%);
-}
-
-/* mobile navigation without js */
-.nav-open .icon-mobile-nav[name="close-outline"] {
-  display: block;
-}
-
-.nav-open .icon-mobile-nav[name="menu-outline"] {
-  display: none;
-}
-
-.main-nav-list {
-  flex-direction: column;
-  gap: 4.8rem;
-}
-
-.main-nav-link:visited,
-.main-nav-link:link {
-  font-size: 3rem;
-}
-
-/**********************************/
-/*  BELOW 704px    (Tablets)      */
-/**********************************/
+/**************************/
+/* BELOW 704px (Smaller tablets) */
+/**************************/
 
 @media (max-width: 44em) {
   .grid--3-cols,
@@ -177,12 +191,11 @@
   }
 
   .diets {
-    grid-column: 1/-1;
+    grid-column: 1 / -1;
     justify-self: center;
   }
 
   .heading-secondary {
-    font-size: 3.6rem;
     margin-bottom: 4.8rem;
   }
 
@@ -193,33 +206,32 @@
   .grid--footer {
     grid-template-columns: repeat(6, 1fr);
   }
+
   .logo-col,
   .address-col {
     grid-column: span 3;
   }
-  .nav-vol {
+
+  .nav-col {
     grid-row: 1;
     grid-column: span 2;
     margin-bottom: 3.2rem;
   }
 }
 
-/**********************************/
-/*  BELOW 544px    (Phones)      */
-/**********************************/
+/**************************/
+/* BELOW 544px (Phones) */
+/**************************/
 
 @media (max-width: 34em) {
   .grid {
     row-gap: 4.8rem;
   }
+
   .grid--2-cols,
   .grid--3-cols,
   .grid--4-cols {
     grid-template-columns: 1fr;
-  }
-
-  .hero {
-    padding: 0 3.2rem;
   }
 
   .btn,
@@ -228,16 +240,20 @@
     padding: 2.4rem 1.6rem;
   }
 
-  .hero-img {
-    width: 80%;
-  }
-
   .section-hero {
     padding: 2.4rem 0 6.4rem 0;
   }
 
+  .hero {
+    padding: 0 3.2rem;
+  }
+
+  .hero-img {
+    width: 80%;
+  }
+
   .logos img {
-    height: 1.3rem;
+    height: 1.2rem;
   }
 
   .step-img-box:nth-child(2) {
@@ -265,12 +281,20 @@
     grid-template-columns: 1fr;
   }
 
+  .cta-text-box {
+    padding: 3.2rem;
+  }
+
   .cta-img-box {
     height: 32rem;
     grid-row: 1;
   }
-
-  .cta-text-box {
-    padding: 3.2rem;
-  }
 }
+
+/* 
+- Font sizes (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+- Spacing system (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+*/
